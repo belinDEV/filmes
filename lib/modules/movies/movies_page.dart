@@ -1,18 +1,11 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-import 'package:using_dio/repositories/movies/movies_repository_impl.dart';
 
 import 'movies_controller.dart';
 
 class MoviesPage extends GetView<MoviesController> {
-  MoviesPage({super.key}) {
-    if (Get.arguments == 'topRated') {
-      MoviesRepositoryImpl().findTopRatedMovies();
-    } else if (Get.arguments == 'popular') {
-      MoviesRepositoryImpl().findPopularMovies();
-    }
-  }
+  const MoviesPage({super.key});
 
   @override
   Widget build(BuildContext context) {

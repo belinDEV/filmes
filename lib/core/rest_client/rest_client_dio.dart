@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:dio/dio.dart';
+import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 import 'package:using_dio/core/dio/interceptors/auth_interceptor.dart';
 import 'package:using_dio/core/dio/interceptors/time_execution_interceptor.dart';
@@ -24,6 +25,7 @@ class RestClientDio implements RestClient {
       [
         TimeExecutionInterceptor(),
         AuthInterceptor(),
+        PrettyDioLogger(),
       ],
     );
   }

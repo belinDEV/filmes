@@ -30,10 +30,11 @@ class MoviesController extends GetxController {
       MoviesRepository repository = Get.find();
       Movies movies;
 
-      if (type == 'populares') {
-        movies = await repository.findPopularMovies();
-      } else {
-        movies = await repository.findTopRatedMovies();
+      switch (type) {
+        case 'popular':
+          movies = await repository.findPopularMovies();
+        case 'topRated' || _:
+          movies = await repository.findTopRatedMovies();
       }
 
       _totalPages(movies.totalPages);
