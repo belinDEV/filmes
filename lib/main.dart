@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
         ),
         GetPage(
           name: '/movies',
-          page: () => MoviesPage(),
+          page: () => const MoviesPage(),
           binding: MoviesBindings(),
         ),
       ],
