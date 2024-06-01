@@ -1,4 +1,7 @@
+import 'dart:developer';
+
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 
 import 'package:using_dio/core/dio/custom_dio.dart';
 import 'package:using_dio/core/exceptions/repository_exception.dart';
@@ -11,11 +14,10 @@ class MoviesRepositoryImpl implements MoviesRepository {
     try {
       final dio = CustomDio();
       final result = await dio.auth().get('/movie/popular');
-      print('CustomDio Result: ${result.data}');
+      debugPrint('CustomDio Result: ${result.data}');
       return Movies.fromMap(result.data);
-    } on DioError catch (e, s) { 
-      print(e);
-      print(s);
+    } on DioException catch (e, s) {
+      log('Error findPopularMovies:', error: e, stackTrace: s);
       throw RepositoryException();
     }
   }
@@ -25,11 +27,10 @@ class MoviesRepositoryImpl implements MoviesRepository {
     try {
       final dio = CustomDio();
       final result = await dio.auth().get('/movie/top_rated');
-      print('CustomDio Result: ${result.data}');
+      debugPrint('CustomDio Result: ${result.data}');
       return Movies.fromMap(result.data);
-    } on DioError catch (e, s) {
-      print(e);
-      print(s);
+    } on DioException catch (e, s) {
+      log('Error findTopRatedMovies:', error: e, stackTrace: s);
       throw RepositoryException();
     }
   }

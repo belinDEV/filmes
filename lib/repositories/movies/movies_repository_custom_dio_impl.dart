@@ -1,4 +1,7 @@
+import 'dart:developer';
+
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 import 'package:using_dio/core/exceptions/repository_exception.dart';
@@ -10,7 +13,7 @@ class MoviesRepositoryCustomDioImpl implements MoviesRepository {
   @override
   Future<Movies> findPopularMovies() async {
     try {
-      final apiKey = env['apiKey'] ?? '';
+      final apiKey = dotenv.env['apiKey'] ?? '';
       final dio = CustomDio();
       final result = await dio.get(
         '/movie/popular',
@@ -19,11 +22,10 @@ class MoviesRepositoryCustomDioImpl implements MoviesRepository {
           'language': 'pt-BR',
         },
       );
-      print('Timer: ${result.data['execution_time']}');
+      debugPrint('Timer: ${result.data['execution_time']}');
       return Movies.fromMap(result.data);
-    } on DioError catch (e, s) {
-      print(e);
-      print(s);
+    } on DioException catch (e, s) {
+      log('Error findPopularMovies:', error: e, stackTrace: s);
       throw RepositoryException();
     }
   }
@@ -31,7 +33,7 @@ class MoviesRepositoryCustomDioImpl implements MoviesRepository {
   @override
   Future<Movies> findTopRatedMovies() async {
     try {
-      final apiKey = env['apiKey'] ?? '';
+      final apiKey = dotenv.env['apiKey'] ?? '';
       final dio = CustomDio();
       final result = await dio.get(
         '/movie/top_rated',
@@ -41,9 +43,8 @@ class MoviesRepositoryCustomDioImpl implements MoviesRepository {
         },
       );
       return Movies.fromMap(result.data);
-    } on DioError catch (e, s) {
-      print(e);
-      print(s);
+    } on DioException catch (e, s) {
+      log('Error findTopRatedMovies:', error: e, stackTrace: s);
       throw RepositoryException();
     }
   }

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dio/dio.dart';
 
 import 'package:using_dio/core/dio/interceptors/auth_interceptor.dart';
@@ -12,8 +14,8 @@ class RestClientDio implements RestClient {
 
   final _baseOptions = BaseOptions(
     baseUrl: 'https://api.themoviedb.org/3/',
-    connectTimeout: 60000,
-    receiveTimeout: 60000,
+    connectTimeout: const Duration(seconds: 60),
+    receiveTimeout: const Duration(seconds: 60),
   );
 
   RestClientDio() {
@@ -51,7 +53,7 @@ class RestClientDio implements RestClient {
         statusCode: response.statusCode,
         statusMessage: response.statusMessage,
       );
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       throw RestClientException(
         message: e.response?.statusMessage,
         statusCode: e.response?.statusCode,
@@ -77,9 +79,8 @@ class RestClientDio implements RestClient {
         statusCode: response.statusCode,
         statusMessage: response.statusMessage,
       );
-    } on DioError catch (e, s) {
-      print(e);
-      print(s);
+    } on DioException catch (e, s) {
+      log('Error get:', error: e, stackTrace: s);
       throw RestClientException(
         message: e.response?.statusMessage,
         statusCode: e.response?.statusCode,
@@ -107,7 +108,7 @@ class RestClientDio implements RestClient {
         statusCode: response.statusCode,
         statusMessage: response.statusMessage,
       );
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       throw RestClientException(
         message: e.response?.statusMessage,
         statusCode: e.response?.statusCode,
@@ -135,7 +136,7 @@ class RestClientDio implements RestClient {
         statusCode: response.statusCode,
         statusMessage: response.statusMessage,
       );
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       throw RestClientException(
         message: e.response?.statusMessage,
         statusCode: e.response?.statusCode,
@@ -163,7 +164,7 @@ class RestClientDio implements RestClient {
         statusCode: response.statusCode,
         statusMessage: response.statusMessage,
       );
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       throw RestClientException(
         message: e.response?.statusMessage,
         statusCode: e.response?.statusCode,
@@ -191,7 +192,7 @@ class RestClientDio implements RestClient {
         ),
       );
       return _dioConverter<T>(response);
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       throw RestClientException(
         message: e.response?.statusMessage,
         statusCode: e.response?.statusCode,

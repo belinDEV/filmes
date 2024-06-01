@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 
 class TimeExecutionInterceptor extends Interceptor {
   @override
@@ -14,7 +15,7 @@ class TimeExecutionInterceptor extends Interceptor {
       response.requestOptions.extra['start_time'],
     );
     final totalExecution = DateTime.now().difference(start);
-    print('Timer is: ${totalExecution.inMilliseconds} milliseconds');
+    debugPrint('Timer is: ${totalExecution.inMilliseconds} milliseconds');
     response.data['execution_time'] = totalExecution.inMilliseconds;
     handler.next(response);
   }
