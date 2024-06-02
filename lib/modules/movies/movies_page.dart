@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-import 'package:using_dio/repositories/movies/movies_repository_impl.dart';
 
 import 'movies_controller.dart';
 
 class MoviesPage extends GetView<MoviesController> {
-  MoviesPage({Key? key}) : super(key: key) {
-    MoviesRepositoryImpl().findPopularMovies();
-  }
+  const MoviesPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +25,6 @@ class MoviesPage extends GetView<MoviesController> {
             ),
             child: Visibility(
               visible: controller.hasError,
-              // ignore: prefer_const_constructors
               replacement: _MoviesContent(),
               child: Center(
                 child: Column(
@@ -51,10 +47,6 @@ class MoviesPage extends GetView<MoviesController> {
 }
 
 class _MoviesContent extends GetView<MoviesController> {
-  const _MoviesContent({
-    Key? key,
-  }) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -92,21 +84,21 @@ class _MoviesContent extends GetView<MoviesController> {
                             constraints: const BoxConstraints(maxWidth: 150),
                             child: Text(
                               films.title,
-                              style: Theme.of(context).textTheme.subtitle2,
+                              style: Theme.of(context).textTheme.titleSmall,
                             ),
                           ),
                           Container(
                             constraints: const BoxConstraints(maxWidth: 150),
                             child: Text(
                               films.overview,
-                              style: Theme.of(context).textTheme.bodyText2,
+                              style: Theme.of(context).textTheme.bodySmall,
                             ),
                           ),
                         ],
                       ),
                     );
                   },
-                ).toList(),
+                ),
               ],
             ),
           ),

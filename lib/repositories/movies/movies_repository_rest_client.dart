@@ -1,8 +1,9 @@
+import 'dart:developer';
+
 import 'package:dio/dio.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:flutter/foundation.dart';
 
 import 'package:using_dio/core/exceptions/repository_exception.dart';
-import 'package:using_dio/core/dio/custom_dio.dart';
 import 'package:using_dio/core/rest_client/rest_client.dart';
 import 'package:using_dio/models/movies.dart';
 import 'movies_repository.dart';
@@ -18,11 +19,10 @@ class MoviesRepositoryRestClient implements MoviesRepository {
   Future<Movies> findPopularMovies() async {
     try {
       final result = await _restClient.auth().get('/movie/popular');
-      print('Timer: ${result.data['execution_time']}');
+      debugPrint('Timer: ${result.data['execution_time']}');
       return Movies.fromMap(result.data);
-    } on DioError catch (e, s) {
-      print(e);
-      print(s);
+    } on DioException catch (e, s) {
+      log('Error findPopularMovies:', error: e, stackTrace: s);
       throw RepositoryException();
     }
   }
@@ -32,9 +32,8 @@ class MoviesRepositoryRestClient implements MoviesRepository {
     try {
       final result = await _restClient.auth().get('/movie/top_rated');
       return Movies.fromMap(result.data);
-    } on DioError catch (e, s) {
-      print(e);
-      print(s);
+    } on DioException catch (e, s) {
+      log('Error findTopRatedMovies:', error: e, stackTrace: s);
       throw RepositoryException();
     }
   }
