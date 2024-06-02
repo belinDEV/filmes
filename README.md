@@ -24,8 +24,7 @@
 
 <h2>Preview 📱</h2>
 
-![Using Dio Example](.github/demos/using_dio_example.mp4)
-
+https://github.com/felipecastrosales/using_dio/assets/59374587/a98ed5f8-7eb0-481b-87f5-759ef8e43d62
 
 ---
 
