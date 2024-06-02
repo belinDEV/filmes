@@ -1,16 +1,84 @@
-# using_dio
+<h1>Using Dio</a></h1>
 
-A new Flutter project.
+<h2>Topics 📋</h2>
 
-## Getting Started
+   <p>
 
-This project is a starting point for a Flutter application.
+   - [About 📖](#about-)
+   - [Preview 📱](#preview-)
+   - [Functionalities 🛠️](#functionalities-%EF%B8%8F)
+   - [How to Use 🤔](#how-to-use-)
+   - [How to Contribute 💪](#how-to-contribute-)
 
-A few resources to get you started if this is your first Flutter project:
+   </p>
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+---
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+<h2>About 📖</h2>
+
+<p>
+   App Using TheMovieDB API with Dio. This project was developed to study the Dio package, which is a powerful Http client for Dart, which allows you to make requests to a server, and also to study the use of the TheMovieDB API, which is a free API that provides a lot of information about movies, series, and actors.
+</p>
+
+---
+
+<h2>Preview 📱</h2>
+
+![Using Dio Example](.github/demos/using_dio_example.mp4)
+
+
+---
+
+<h2>Functionalities 🛠️</h2>
+
+- View top rated movies;
+- View popular movies;
+
+---
+
+<h2>How to Use 🤔</h2>
+
+- Don't forget to create an account on the TheMovieDB website, and get your API key, see https://www.themoviedb.org/documentation/api for more information.
+- In this repository, you will find a file called "env_example" in the root of the project, rename this file to ".env" and replace the value of the "apiKey" variable with your API key.
+- After that, follow the steps below:****
+
+   ```
+   First of all, correctly configure the Flutter Web development environment on your machine,**** see https://flutter.dev/web
+   
+   - Clone this repository:
+   $ git clone https://github.com/felipecastrosales/using_dio using_dio
+
+   - Enter in directory:
+   $ cd using_dio
+
+   - For install dependencies:
+   $ flutter pub get
+
+   - Run the app: 
+   $ flutter run
+   ```
+
+---
+
+<h2>How to Contribute 💪</h2>
+
+   ```
+   - Fork the project 
+
+   - Create a new branch with your changes:
+   $ git checkout -b my-feature
+
+   - Save your changes and create a commit message telling you what you did:
+   $ git commit -m "feature: My new feature"
+
+   - Submit your changes:
+   $ git push origin my-feature
+   ```
+
+---
+
+   <div>
+
+   [![Linkedin Badge](https://img.shields.io/badge/-Felipe%20Sales-292929?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/felipecastrosales/)](https://www.linkedin.com/in/felipecastrosales/)
+
+   </div>
